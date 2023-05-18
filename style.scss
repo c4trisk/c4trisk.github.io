@@ -1,0 +1,530 @@
+// Variables
+$primary-font: 'Inter', sans-serif;
+
+$weight-reg: 400;
+$weight-s-bold: 600;
+$weight-bold: 700;
+
+$size-14px: 14px;
+$size-16px: 16px;
+$size-32px: 32px;
+$size-64px: 64px;
+
+$text-grey: #959595;
+
+$primary-clr: #FDE8FF;
+$primary-clr-hover: hsl(295, 100%, 93%);
+$bg-clr: #F6F6F6;
+
+// Mixins
+
+@mixin for-tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin for-mobile {
+  @media (max-width: 480px) {
+     @content;
+  }
+}
+
+@mixin large-headline {
+  font-size: $size-64px;
+  font-weight: $weight-s-bold;
+  letter-spacing: .035em;
+}
+
+@mixin medium-headline {
+  font-size: $size-32px;
+  font-weight: $weight-bold;
+  line-height: 30px;
+  letter-spacing: .035em;
+}
+
+@mixin small-headline {
+  font-size: $size-16px;
+  font-weight: $weight-bold;
+  line-height: 24px;
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  height: 100dvh;
+  font-family: $primary-font;
+}
+
+.container {
+  width: 100%;
+  background-color: $primary-clr;
+  background-image: url("./assets/background-img.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem;
+}
+
+
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: $bg-clr;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 1.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include for-mobile {
+    padding: 1.2rem 1rem;
+  }
+}
+
+
+.btn {
+  outline: none;
+  border: none;
+  padding: .5em 1em;
+  border-radius: .5em;
+  font-family: $primary-font;
+  font-size: $size-16px;
+  font-weight: $weight-bold;
+  cursor: pointer;
+}
+
+// ---------------- NAV -----------------
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.logo i {
+  font-size: 1.2em;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: $weight-bold;
+}
+
+.nav-link:hover {
+  text-decoration: solid underline #000 4px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.7em;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  border-radius: 1rem;
+  background-color: #000;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+@media (max-width: 820px) {
+  .navbar {
+    width: 100%;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: $primary-clr;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.55);
+    padding: 2rem;
+    border-radius: 0 1rem 0 1rem;
+  }
+
+  .nav-links li {
+    margin-bottom: 1.2rem;
+    text-align: right;
+  }
+  
+  .nav-links li:first-of-type {
+    padding-top: 3rem;
+
+  }
+
+  .hamburger.active .bar:nth-child(2){
+    opacity: 0;
+  } 
+  .hamburger.active .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  } 
+  .hamburger.active .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  } 
+
+  .hamburger {
+    display: block;
+    z-index: 99;
+  }
+}
+
+.show {
+  display: block;
+}
+//------------------ INTRO ----------------
+
+#intro {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 3rem;
+  margin-bottom: 1rem;
+  
+  @include for-tablet{
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    gap: 1.5rem;
+  }
+  
+}
+
+#intro .right {
+  max-width: 520px;
+  @include for-tablet {
+    text-align: center;
+  }
+}
+
+#intro .right p:last-child {
+  margin-top: 2rem;
+}
+
+#intro .right h1 {
+  margin-bottom: 1rem;
+
+}
+
+.profile-img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+
+  @include for-tablet{
+    width: 250px;
+    height: 250px;
+    border-radius: 1rem;
+  }
+}
+
+
+//------------------ EDUCATION ----------------
+
+#education {
+  width: 100%;
+  padding-inline: 3rem;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+
+  .left,
+  .right {
+    flex: 1;
+  }
+  @include for-tablet{
+    padding: 1rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+}
+
+#education h2 {
+  margin-bottom: 2rem;
+}
+
+.education_group {
+  margin-bottom: 1.5rem;
+}
+
+#education .right {
+  background-color: $primary-clr;
+  border-radius: 20px;
+  padding: 3rem;
+
+  @include for-tablet{
+   padding: 2rem; 
+  }
+
+  @include for-mobile {
+    padding: 1.5rem;
+  }
+}
+
+#education .right h3 {
+  margin-bottom: .5rem;
+}
+
+//------------------ CAREER ----------------
+
+#career {
+  width: 100%;
+  padding-inline: 3rem;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 5rem;
+
+  @include for-tablet{
+    padding: 1rem;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 2rem
+  }
+
+  .career_headline,
+  .career_posts {
+    flex: 1;
+  }
+
+  .career_headline h2 {
+    margin-bottom: 3rem;
+  }
+
+  .career_intro p {
+    margin-bottom: 1.7rem;
+  }
+
+  .career_group {
+    margin-bottom: 1.5rem;
+  }
+
+}
+
+
+
+//------------------ SKILLS ----------------
+
+#skills {
+  width: 100%;
+  padding-inline: 3rem;
+  margin-bottom: 6rem;
+
+  @include for-tablet{
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .skills_grid {
+    background-color: $primary-clr;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+
+    @include for-tablet {
+      padding: 0;
+      padding-top: 2rem;
+    }
+  }
+
+
+  .skills_headline {
+    margin-bottom: 1rem;
+
+  }
+
+  .skills_intro{
+    margin-bottom: 1rem;
+    padding-inline: 1rem;
+  }
+
+  .skills_icons {
+    padding: 1rem 5rem;
+
+
+    @include for-tablet{
+      padding: 1rem;
+    }
+  }
+  
+  .skills_icons i {
+    font-size: 3em;
+    color: #5c5959;
+    transition: all .2s ease-out;
+
+    @include for-tablet {
+      font-size: 2.5em;
+      margin: 1rem;
+      line-height: 4rem;
+    }
+  }
+  .skills_icons i:hover {
+    color: #000;
+  }
+}
+
+//------------------ CONTACT ----------------
+
+#contact {
+  width: 100%;
+  padding-inline: 3rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 5rem;
+
+  @include for-tablet{
+    padding: 1rem;
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .contact_options,
+  .contact_headline {
+    flex: 1;
+
+    @include for-tablet{
+      width: 100%;
+    }
+    
+  }
+
+  .contact_headline h2 {
+    margin-bottom: 3rem;
+
+    @include for-tablet{
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .contact_options a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .contact_info p {
+    margin-bottom: 1.7rem;
+  }
+
+  .contact_group {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: $primary-clr;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: .5rem 1.2rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+
+    @include for-mobile {
+      flex-direction: column;
+      gap: .5rem;
+      padding: 1rem;
+    }
+  }
+
+  .contact_group div {
+    @include for-mobile {
+      text-align: center;
+    }
+  }
+
+  .contact_group:hover {
+    background-color: $primary-clr-hover;
+  }
+
+  .contact_group i {
+    font-size: 2em;
+  }
+}
+
+
+//------------------- Classes----------
+
+.large-headline {
+  @include large-headline;
+}
+
+.medium-headline {
+  @include medium-headline;
+}
+
+.small-headline {
+  @include small-headline;
+}
+
+.text-grey {
+  color: $text-grey;
+}
+
+.btn-primary {
+  background-color: #1a1a1a;
+  text-decoration: none;
+  color: #fff;
+  transition: all .2s ease-out;
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  color: #000;
+  outline: 3px solid #000;
+}
+.btn-primary:active {
+  background-color: $primary-clr;
+
+}
+
+.body-text {
+  font-size: $size-16px;
+  font-weight: $weight-reg;
+  line-height: 24px;
+}
+
+.small-body-text {
+  font-size: $size-14px;
+  font-weight: $weight-reg;
+  line-height: 20px;
+}
+
+.bold {
+  font-weight: $weight-bold;
+}
